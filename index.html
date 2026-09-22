@@ -414,7 +414,12 @@ html {
     margin-bottom: 8px;
   }
   .detalles .hora { font-size: 1.2rem; color: var(--marron); margin-bottom: 20px; }
-  .detalles .lugar { font-weight: 700; color: var(--verde-oscuro); margin-bottom: 5px; font-size: 1.1rem; }
+  .detalles .lugar2 {
+  font-weight: 700;
+  color: var(--verde-oscuro);
+  margin-bottom: 12px;
+  font-size: 1.1rem;
+}
   .detalles .direccion { font-size: 0.95rem; color: var(--marron); }
 
   /* Mapa */
@@ -706,6 +711,7 @@ html {
     <div class="hora" id="hora"></div>
     <div class="icono">📍</div>
     <div class="lugar" id="lugar"></div>
+    <div class="lugar2" id="lugar2"></div>
     <div class="direccion" id="direccion"></div>
 
     <div class="mapa-contenedor">
@@ -807,11 +813,11 @@ const CONFIG = {
   nombreBebe: "¡Bebé en camino!",
   fecha: "Sábado 14 de Noviembre, 2026",
   hora: "3:30 PM",
-  lugar: "Salón de usos múltiples \"Lienzo Charro\"",
+  lugar: "Salón de usos múltiples",
+  lugar2: "Lienzo Charro",
   direccion: "Calle Venustiano Carranza 569, Centro, 43860 Tolcayuca, Hgo.",
   vestimentaSub: "Estilo medieval / cuento de hadas. ¡Ven como un habitante de Muy Muy Lejano!",
   mensajeFinal: "¡Te esperamos para celebrar juntos!",
-
   // 📅 Fecha del evento (AÑO, MES-1, DÍA, HORA, MINUTOS)
   fechaEvento: new Date(2026, 10, 14, 15, 30, 0).getTime(),
 
@@ -827,6 +833,7 @@ document.getElementById('nombreBebe').textContent = CONFIG.nombreBebe;
 document.getElementById('fecha').textContent = CONFIG.fecha;
 document.getElementById('hora').textContent = CONFIG.hora;
 document.getElementById('lugar').textContent = CONFIG.lugar;
+document.getElementById('lugar2').textContent = CONFIG.lugar2;
 document.getElementById('direccion').textContent = CONFIG.direccion;
 document.getElementById('vestimentaSub').textContent = CONFIG.vestimentaSub;
 document.getElementById('regalosSub').textContent = CONFIG.regalosSub;
