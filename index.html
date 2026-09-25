@@ -365,17 +365,25 @@ html {
     object-fit: cover;
     border-radius: 50%;
     border: 8px solid var(--dorado);
-    box-shadow: 0 0 0 6px var(--verde-pantano), 0 20px 50px rgba(45, 80, 22, 0.5);
-    animation: latir 3s ease-in-out infinite;
+    box-shadow:
+      0 0 0 6px var(--verde-pantano),
+      0 0 0 12px #1a1a1a,        /* borde negro tipo vinilo */
+      0 0 0 14px var(--dorado),   /* anillo dorado exterior */
+      0 20px 50px rgba(45, 80, 22, 0.5);
+    animation: girarVinilo 20s linear infinite;
     position: relative;
     z-index: 1;
     will-change: transform;
     transform: translateZ(0);
+    backface-visibility: hidden;
+}
+    @keyframes girarVinilo {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
     }
-  @keyframes latir {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.03); }
-  }
+    
+
+    
 
   /* Tarjetas genéricas */
   .tarjeta {
@@ -700,11 +708,30 @@ html {
   </div>
 
   <!-- Foto principal -->
-  <div class="foto-principal">
-    <img id="fotoPrincipal" src="" alt="Foto principal">
+    <div class="foto-principal">
+        <img id="fotoPrincipal" src="" alt="Foto principal">
+        <div class="centro-vinilo">🧅</div>
+    </div>
+
+  <!-- Galería general (AHORA VA AQUÍ, JUSTO DEBAJO DE LA PRINCIPAL) -->
+  <div class="galeria" id="galeria"></div>
+
+
+  <!-- Vestimenta -->
+  <div class="tarjeta dorada">
+    <div class="tarjeta-titulo">👗 Temática de Vestimenta 👔</div>
+    <div class="tarjeta-sub" id="vestimentaSub"></div>
+    <div class="vestimenta-galeria" id="vestimentaGaleria"></div>
+    <div class="prohibido">
+      <div class="simbolo">🚫</div>
+      <div class="texto">
+        <strong>PROHIBIDO VESTIR DE VERDE</strong>
+        ¡No queremos confundirte con Shrek! 🧅
+      </div>
+    </div>
   </div>
 
-  <!-- Detalles + Mapa -->
+    <!-- Detalles + Mapa -->
   <div class="tarjeta detalles">
     <div class="icono">📅</div>
     <div class="fecha" id="fecha"></div>
@@ -720,41 +747,24 @@ html {
     <a class="btn-mapa" id="btnMapa" target="_blank">Abrir en Google Maps 🗺️</a>
   </div>
 
-  <!-- Vestimenta -->
-  <div class="tarjeta dorada">
-    <div class="tarjeta-titulo">👗 Temática de Vestimenta 👔</div>
-    <div class="tarjeta-sub" id="vestimentaSub"></div>
-    <div class="vestimenta-galeria" id="vestimentaGaleria"></div>
-    <div class="prohibido">
-      <div class="simbolo">🚫</div>
-      <div class="texto">
-        <strong>PROHIBIDO VESTIR DE VERDE</strong>
-        ¡No queremos confundirte con los nuevos Papis! 🫃🤰
-      </div>
-    </div>
-  </div>
-
-  <!-- Mesa de regalos -->
+  <!-- 
+    VERSIÓN 1: CON MESA DE REGALOS
+    Para la VERSIÓN 2 (sin mesa de regalos), deja esto comentado.
+  -->
+  <!--
   <div class="tarjeta">
     <div class="tarjeta-titulo">🎁 Mesa de Regalos 🎁</div>
     <div class="tarjeta-sub" id="regalosSub"></div>
     <div class="regalos-grid" id="regalosGrid"></div>
   </div>
-
-  <!-- Galería general -->
-  <div class="galeria" id="galeria"></div>
+  -->
 
   <!-- Final -->
   <div class="final">
     <div class="mensaje" id="mensajeFinal"></div>
     <a class="btn-whatsapp" id="btnWhatsapp" target="_blank">Confirmar Asistencia 💬</a>
   </div>
-</div>
-
-<!-- Control de música -->
-<button class="music-control" id="musicControl" title="Música on/off">🔊</button>
-
-<script>
+</div><script>
 // ═══════════════════════════════════════════════════════════
 // 🎨 CONFIGURACIÓN - SOLO CAMBIA ESTAS URLs Y TEXTOS
 // ═══════════════════════════════════════════════════════════
@@ -836,7 +846,7 @@ document.getElementById('lugar').textContent = CONFIG.lugar;
 document.getElementById('lugar2').textContent = CONFIG.lugar2;
 document.getElementById('direccion').textContent = CONFIG.direccion;
 document.getElementById('vestimentaSub').textContent = CONFIG.vestimentaSub;
-document.getElementById('regalosSub').textContent = CONFIG.regalosSub;
+// document.getElementById('regalosSub').textContent = CONFIG.regalosSub;
 document.getElementById('mensajeFinal').textContent = CONFIG.mensajeFinal;
 document.getElementById('fotoPrincipal').src = CONFIG.imagenPrincipal;
 document.getElementById('mapaIframe').src = CONFIG.mapaIframe;
@@ -868,24 +878,24 @@ CONFIG.vestimenta.forEach(url => {
   vestEl.appendChild(div);
 });
 
-// Mesa de regalos
-const regalosEl = document.getElementById('regalosGrid');
-CONFIG.regalos.forEach(r => {
-  const a = document.createElement('a');
-  a.className = 'regalo-card';
-  a.href = r.url;
-  a.target = '_blank';
-  a.rel = 'noopener';
-  a.innerHTML = `
-    <div class="regalo-icono">${r.icono}</div>
-    <div class="regalo-nombre">${r.nombre}</div>
-    <div class="regalo-desc">${r.descripcion}</div>
-  `;
-  regalosEl.appendChild(a);
-});
+// // Mesa de regalos
+// const regalosEl = document.getElementById('regalosGrid');
+// CONFIG.regalos.forEach(r => {
+//   const a = document.createElement('a');
+//   a.className = 'regalo-card';
+//   a.href = r.url;
+//   a.target = '_blank';
+//   a.rel = 'noopener';
+//   a.innerHTML = `
+//     <div class="regalo-icono">${r.icono}</div>
+//     <div class="regalo-nombre">${r.nombre}</div>
+//     <div class="regalo-desc">${r.descripcion}</div>
+//   `;
+//   regalosEl.appendChild(a);
+// });
 
 // Botón WhatsApp
-const mensaje = encodeURIComponent(`¡Hola! Confirmo mi asistencia al Baby Shower de ${CONFIG.nombreBebe} 💚`);
+const mensaje = encodeURIComponent(`¡Hola! Confirmo mi asistencia con mi nombre al Baby Shower ${CONFIG.nombreBebe} 😉💛`);
 document.getElementById('btnWhatsapp').href = `https://wa.me/${CONFIG.whatsapp}?text=${mensaje}`;
 
 // ═══════════════════════════════════════════════════════════
