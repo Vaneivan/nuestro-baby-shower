@@ -9,29 +9,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=MedievalSharp&display=swap" rel="stylesheet"><style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  :root {
-    * {
-  -webkit-tap-highlight-color: transparent;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
-@media (max-width: 768px) {
-  /* Reduce sombras pesadas en móvil */
-  .foto-principal img {
-    box-shadow: 0 0 0 4px var(--verde-pantano), 0 10px 25px rgba(45, 80, 22, 0.4);
-  }
-  .tarjeta, .contador-contenedor, .regalo-card {
-    box-shadow: 0 8px 20px rgba(107, 68, 35, 0.2);
-  }
-  /* Detiene animaciones decorativas que consumen GPU */
-  .hoja {
-    animation: none;
-    opacity: 0.25;
-  }
-}
+    :root {
     --verde-pantano: #4a7c2e;
     --verde-oscuro: #2d5016;
     --verde-claro: #8bc34a;
@@ -40,6 +18,14 @@ html {
     --dorado: #d4af37;
     --beige: #f5e6d3;
     --crema: #fdf8f0;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    scroll-behavior: smooth;
   }
 
   body {
@@ -621,7 +607,7 @@ html {
     box-shadow: 0 15px 35px rgba(74, 124, 46, 0.7);
   }
 
-  /* Control de música */
+    /* Control de música */
   .music-control {
     position: fixed;
     bottom: 20px;
@@ -764,8 +750,12 @@ html {
     <div class="mensaje" id="mensajeFinal"></div>
     <a class="btn-whatsapp" id="btnWhatsapp" target="_blank">Confirmar Asistencia 💬</a>
   </div>
-</div><script>
-// ═══════════════════════════════════════════════════════════
+</div>
+
+<!-- Control de música -->
+<button class="music-control" id="musicControl" title="Música on/off">🔊</button>
+
+<script>// ═══════════════════════════════════════════════════════════
 // 🎨 CONFIGURACIÓN - SOLO CAMBIA ESTAS URLs Y TEXTOS
 // ═══════════════════════════════════════════════════════════
 const CONFIG = {
@@ -1025,7 +1015,7 @@ function lanzarConfeti() {
   document.body.appendChild(fragment);
 }
 
-// Confeti continuo (solo en desktop, o muy reducido en móvil)
+// Confeti continuo (solo en desktop)
 if (!esMovil) {
   setInterval(() => {
     if (!document.hidden && contenido.classList.contains('visible')) {
