@@ -390,6 +390,61 @@
     margin-bottom: 10px;
     text-shadow: 2px 2px 0 var(--dorado);
   }
+    .btn-copiar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 18px;
+    background: linear-gradient(135deg, var(--verde-pantano), var(--verde-oscuro));
+    color: var(--dorado);
+    border: 2px solid var(--dorado);
+    border-radius: 40px;
+    padding: 10px 22px;
+    font-family: 'MedievalSharp', cursive;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+    box-shadow: 0 6px 18px rgba(74, 124, 46, 0.35);
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-copiar::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 50%, rgba(212, 175, 55, 0.3), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .btn-copiar:hover::before { opacity: 1; }
+  .btn-copiar:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(74, 124, 46, 0.55);
+    color: var(--beige);
+  }
+  .btn-copiar:active {
+    transform: translateY(0) scale(0.97);
+  }
+  .btn-copiar .icono-copiar {
+    font-size: 1.1rem;
+    transition: transform 0.3s;
+  }
+  .btn-copiar:hover .icono-copiar {
+    transform: rotate(-10deg) scale(1.15);
+  }
+  .btn-copiar.copiado {
+    background: linear-gradient(135deg, #4a7c2e, #1a4d0e);
+    color: #fff;
+    border-color: #fff;
+    animation: pulsoCopiado 0.5s ease-out;
+  }
+  @keyframes pulsoCopiado {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+    100% { transform: scale(1); }
+  }
   .tarjeta-sub {
     color: var(--marron);
     font-size: 1rem;
@@ -716,6 +771,72 @@
     </div>
   </div>
 
+    <!-- 
+    VERSIÓN 1: CON MESA DE REGALOS
+  -->
+  <!-- Mesa de Regalos - Giftful -->
+  <div class="tarjeta">
+  <div class="tarjeta-titulo">🧅 No Traigas Cebollas, Trae Regalos 🎁</div>
+  <div class="tarjeta-sub">
+    Si deseas obsequiarnos algo para nuestro pequeño ogro,<br>
+    aquí encontrarás la lista de regalos que necesita.
+  </div>
+  <div class="regalos-grid">
+    <a href="https://giftful.com/wishlists/HF7JACPyYHttY2d1tMrq" target="_blank" rel="noopener" class="regalo-card">
+      <div class="regalo-icono">📋</div>
+      <div class="regalo-nombre">Ver Lista de Regalos</div>
+      <div class="regalo-desc">Regalos que necesita nuestro pequeño ogro</div>
+    </a>
+  </div>
+</div>
+<!-- Donaciones en efectivo -->
+<div class="tarjeta dorada">
+  <div class="tarjeta-titulo">💰 El Cofre del Reino 💰</div>
+  <div class="tarjeta-sub">
+    Si prefieres hacernos un obsequio en efectivo para nuestro pequeño ogro,<br>
+    aquí te dejamos las opciones. ¡Gracias por tu cariño! 🧅
+  </div>
+
+  <div class="regalos-grid">
+    <!-- Transferencia -->
+    <div class="regalo-card" style="cursor: default;">
+      <div class="regalo-icono">📱</div>
+      <div class="regalo-nombre">Transferencia</div>
+      <div class="regalo-desc">
+        <strong>Banco:</strong> MERCADO PAGO W<br>
+        <strong>Beneficiario:</strong> LUIS IVAN ORTIZ DURAN<br>
+        <strong>CLABE:</strong> <span id="clabe">722969010918088617</span><br>
+        <strong>CONCEPTO:</strong> Con mucho cariño para el bebé ogro!
+      </div>
+      <button class="btn-copiar" data-copiar="012345678901234567" title="Copiar CLABE">
+        <span class="icono-copiar">📋</span>
+        <span class="texto-copiar">Copiar CLABE</span>
+      </button>    
+    </div>
+
+    <!-- Sobre -->
+    <div class="regalo-card" style="cursor: default;">
+      <div class="regalo-icono">✉️</div>
+      <div class="regalo-nombre">Lluvia de Sobres</div>
+      <div class="regalo-desc">
+        Tu presencia es el mejor regalo, pero si deseas contribuir,<br>
+        un sobre con tu cariño será atesorado.
+      </div>
+      <p style="
+        font-family: 'MedievalSharp', cursive;
+        font-size: 0.85rem;
+        color: var(--verde-pantano);
+        font-style: italic;
+        margin-top: 12px;
+        line-height: 1.5;
+      ">
+        "Un buen amigo es como un buen cuento:<br>
+        difícil de encontrar y difícil de olvidar."
+      </p>
+    </div>
+  </div>
+</div>
+
     <!-- Detalles + Mapa -->
   <div class="tarjeta detalles">
     <div class="icono">📅</div>
@@ -732,15 +853,6 @@
     <a class="btn-mapa" id="btnMapa" target="_blank">Abrir en Google Maps 🗺️</a>
   </div>
 
-  <!-- 
-    VERSIÓN 1: CON MESA DE REGALOS
-  -->
-  
-  <div class="tarjeta">
-    <div class="tarjeta-titulo">🎁 Mesa de Regalos 🎁</div>
-    <div class="tarjeta-sub" id="regalosSub"></div>
-    <div class="regalos-grid" id="regalosGrid"></div>
-  </div>
  
 
   <!-- Final -->
@@ -753,60 +865,29 @@
 <!-- Control de música -->
 <button class="music-control" id="musicControl" title="Música on/off">🔊</button>
 
-<script>// ═══════════════════════════════════════════════════════════
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+
+// ═══════════════════════════════════════════════════════════
 // 🎨 CONFIGURACIÓN - SOLO CAMBIA ESTAS URLs Y TEXTOS
 // ═══════════════════════════════════════════════════════════
 const CONFIG = {
-  // 📸 Imagen principal
   imagenPrincipal: "https://files.catbox.moe/lbsz1z.jpeg",
-
-  // 🖼️ Galería general
   galeria: [
     "https://files.catbox.moe/6nucmu.jpeg",
     "https://files.catbox.moe/cvnhej.jpeg",
     "https://files.catbox.moe/7n4azb.jpeg",
     "https://files.catbox.moe/eonhwa.jpeg"
   ],
-
-  // 👗 Imágenes de vestimenta sugerida
   vestimenta: [
     "https://files.catbox.moe/uwy63h.jpeg",
     "https://files.catbox.moe/jh9wkq.jpeg",
     "https://files.catbox.moe/njhaxu.jpeg",
     "https://files.catbox.moe/7pjdzt.jpeg"
   ],
-
-//   // 🎁 Mesa de regalos
-  regalos: [
-    {
-      icono: "🛒",
-      nombre: "Amazon",
-      descripcion: "Mesa de regalos en Amazon",
-      url: "https://www.amazon.com.mx"
-    },
-    {
-      icono: "🏬",
-      nombre: "Liverpool",
-      descripcion: "Mesa de regalos en Liverpool",
-      url: "https://www.liverpool.com.mx"
-    },
-    {
-      icono: "💵",
-      nombre: "Lluvia de Sobres",
-      descripcion: "Tu presencia es el mejor regalo, pero si deseas contribuir, un sobre será bienvenido",
-      url: "#"
-    }
-  ],
-  regalosSub: "Tu presencia es nuestro mejor regalo, pero si deseas obsequiarnos algo, aquí tienes opciones:",
-
-  // 📍 Mapa (pega el src del iframe de Google Maps)
   mapaIframe: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3750.123726544909!2d-98.92315242065429!3d19.961298300000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d199003cd6d61b%3A0x9b4e9477a2ba74e7!2sSal%C3%B3n%20de%20usos%20m%C3%BAltiples%20%22Lienzo%20Charro%22!5e0!3m2!1ses!2smx!4v1790047651294!5m2!1ses!2smx",
   mapaLink: "https://maps.app.goo.gl/KziScbmhxa5fMqPn8",
-
-  // 🎵 Música - enlace directo .mp3 (ej: Catbox.moe)
   musica: "https://files.catbox.moe/ckemmr.mp3",
-
-  // 📝 Textos
   titulo: "Bienvenidos a muy muy embarazada",
   nombreBebe: "¡Bebé en camino!",
   fecha: "Sábado 14 de Noviembre, 2026",
@@ -816,75 +897,71 @@ const CONFIG = {
   direccion: "Calle Venustiano Carranza 569, Centro, 43860 Tolcayuca, Hgo.",
   vestimentaSub: "Estilo medieval / cuento de hadas. ¡Ven como un habitante de Muy Muy Lejano!",
   mensajeFinal: "¡Te esperamos para celebrar juntos!",
-  // 📅 Fecha del evento (AÑO, MES-1, DÍA, HORA, MINUTOS)
   fechaEvento: new Date(2026, 10, 14, 15, 30, 0).getTime(),
-
-  // 📱 WhatsApp
   whatsapp: "7791255225"
 };
 
 // ═══════════════════════════════════════════════════════════
-// Aplicar configuración
+// Aplicar configuración de forma segura
 // ═══════════════════════════════════════════════════════════
-document.getElementById('titulo').textContent = CONFIG.titulo;
-document.getElementById('nombreBebe').textContent = CONFIG.nombreBebe;
-document.getElementById('fecha').textContent = CONFIG.fecha;
-document.getElementById('hora').textContent = CONFIG.hora;
-document.getElementById('lugar').textContent = CONFIG.lugar;
-document.getElementById('lugar2').textContent = CONFIG.lugar2;
-document.getElementById('direccion').textContent = CONFIG.direccion;
-document.getElementById('vestimentaSub').textContent = CONFIG.vestimentaSub;
-document.getElementById('regalosSub').textContent = CONFIG.regalosSub;
-document.getElementById('mensajeFinal').textContent = CONFIG.mensajeFinal;
-document.getElementById('fotoPrincipal').src = CONFIG.imagenPrincipal;
-document.getElementById('mapaIframe').src = CONFIG.mapaIframe;
-document.getElementById('btnMapa').href = CONFIG.mapaLink;
+function setText(id, texto) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = texto;
+}
+
+setText('titulo', CONFIG.titulo);
+setText('nombreBebe', CONFIG.nombreBebe);
+setText('fecha', CONFIG.fecha);
+setText('hora', CONFIG.hora);
+setText('lugar', CONFIG.lugar);
+setText('lugar2', CONFIG.lugar2);
+setText('direccion', CONFIG.direccion);
+setText('vestimentaSub', CONFIG.vestimentaSub);
+setText('mensajeFinal', CONFIG.mensajeFinal);
+
+const foto = document.getElementById('fotoPrincipal');
+if (foto) foto.src = CONFIG.imagenPrincipal;
+
+const mapa = document.getElementById('mapaIframe');
+if (mapa) mapa.src = CONFIG.mapaIframe;
+
+const btnMapa = document.getElementById('btnMapa');
+if (btnMapa) btnMapa.href = CONFIG.mapaLink;
 
 // Galería general
 const galeriaEl = document.getElementById('galeria');
-CONFIG.galeria.forEach(url => {
-  const div = document.createElement('div');
-  div.className = 'item';
-  const img = document.createElement('img');
-  img.src = url;
-  img.alt = 'Recuerdo';
-  img.loading = 'lazy';
-  div.appendChild(img);
-  galeriaEl.appendChild(div);
-});
+if (galeriaEl) {
+  CONFIG.galeria.forEach(url => {
+    const div = document.createElement('div');
+    div.className = 'item';
+    const img = document.createElement('img');
+    img.src = url;
+    img.alt = 'Recuerdo';
+    img.loading = 'lazy';
+    div.appendChild(img);
+    galeriaEl.appendChild(div);
+  });
+}
 
 // Galería vestimenta
 const vestEl = document.getElementById('vestimentaGaleria');
-CONFIG.vestimenta.forEach(url => {
-  const div = document.createElement('div');
-  div.className = 'vestimenta-item';
-  const img = document.createElement('img');
-  img.src = url;
-  img.alt = 'Vestimenta sugerida';
-  img.loading = 'lazy';
-  div.appendChild(img);
-  vestEl.appendChild(div);
-});
-
-// // Mesa de regalos
-const regalosEl = document.getElementById('regalosGrid');
-CONFIG.regalos.forEach(r => {
-  const a = document.createElement('a');
-  a.className = 'regalo-card';
-  a.href = r.url;
-  a.target = '_blank';
-  a.rel = 'noopener';
-  a.innerHTML = `
-    <div class="regalo-icono">${r.icono}</div>
-    <div class="regalo-nombre">${r.nombre}</div>
-    <div class="regalo-desc">${r.descripcion}</div>
-  `;
-  regalosEl.appendChild(a);
-});
+if (vestEl) {
+  CONFIG.vestimenta.forEach(url => {
+    const div = document.createElement('div');
+    div.className = 'vestimenta-item';
+    const img = document.createElement('img');
+    img.src = url;
+    img.alt = 'Vestimenta sugerida';
+    img.loading = 'lazy';
+    div.appendChild(img);
+    vestEl.appendChild(div);
+  });
+}
 
 // Botón WhatsApp
 const mensaje = encodeURIComponent(`¡Hola! Confirmo mi asistencia con mi nombre al Baby Shower ${CONFIG.nombreBebe} 😉💛`);
-document.getElementById('btnWhatsapp').href = `https://wa.me/${CONFIG.whatsapp}?text=${mensaje}`;
+const btnWhatsapp = document.getElementById('btnWhatsapp');
+if (btnWhatsapp) btnWhatsapp.href = `https://wa.me/${CONFIG.whatsapp}?text=${mensaje}`;
 
 // ═══════════════════════════════════════════════════════════
 // Contador regresivo
@@ -894,10 +971,7 @@ function actualizarContador() {
   const distancia = CONFIG.fechaEvento - ahora;
 
   if (distancia < 0) {
-    document.getElementById('dias').textContent = '0';
-    document.getElementById('horas').textContent = '00';
-    document.getElementById('minutos').textContent = '00';
-    document.getElementById('segundos').textContent = '00';
+    setText('dias', '0'); setText('horas', '00'); setText('minutos', '00'); setText('segundos', '00');
     return;
   }
 
@@ -906,10 +980,10 @@ function actualizarContador() {
   const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
   const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
 
-  document.getElementById('dias').textContent = dias;
-  document.getElementById('horas').textContent = String(horas).padStart(2, '0');
-  document.getElementById('minutos').textContent = String(minutos).padStart(2, '0');
-  document.getElementById('segundos').textContent = String(segundos).padStart(2, '0');
+  setText('dias', dias);
+  setText('horas', String(horas).padStart(2, '0'));
+  setText('minutos', String(minutos).padStart(2, '0'));
+  setText('segundos', String(segundos).padStart(2, '0'));
 }
 actualizarContador();
 setInterval(actualizarContador, 1000);
@@ -921,23 +995,19 @@ const pantallaSobre = document.getElementById('pantallaSobre');
 const contenido = document.getElementById('contenido');
 let sobreAbierto = false;
 
-pantallaSobre.addEventListener('click', () => {
-  if (sobreAbierto) return;
-  sobreAbierto = true;
-
-  // 1. Abrir solapa (0ms)
-  pantallaSobre.classList.add('abierto');
-
-  // 2. Intentar música al primer toque (requiere interacción)
-  intentarReproducirMusica();
-
-  // 3. Después de que la carta suba, ocultar sobre y mostrar contenido
-  setTimeout(() => {
-    pantallaSobre.style.display = 'none';
-    contenido.classList.add('visible');
-    lanzarConfeti();
-  }, 2000);
-});
+if (pantallaSobre && contenido) {
+  pantallaSobre.addEventListener('click', () => {
+    if (sobreAbierto) return;
+    sobreAbierto = true;
+    pantallaSobre.classList.add('abierto');
+    intentarReproducirMusica();
+    setTimeout(() => {
+      pantallaSobre.style.display = 'none';
+      contenido.classList.add('visible');
+      lanzarConfeti();
+    }, 2000);
+  });
+}
 
 // ═══════════════════════════════════════════════════════════
 // Música
@@ -945,49 +1015,48 @@ pantallaSobre.addEventListener('click', () => {
 const musica = document.getElementById('musica');
 const musicControl = document.getElementById('musicControl');
 
-if (CONFIG.musica) {
+if (musica && CONFIG.musica) {
   musica.src = CONFIG.musica;
 }
 
 function intentarReproducirMusica() {
-  if (!CONFIG.musica) {
-    musicControl.style.display = 'none';
+  if (!musica || !CONFIG.musica) {
+    if (musicControl) musicControl.style.display = 'none';
     return;
   }
   musica.volume = 0.4;
   musica.play().catch(() => console.log('Autoplay bloqueado.'));
 }
 
-musicControl.addEventListener('click', (e) => {
-  e.stopPropagation();
-  if (musica.paused) {
-    musica.play();
-    musicControl.textContent = '🔊';
-    musicControl.classList.remove('pausado');
-  } else {
-    musica.pause();
-    musicControl.textContent = '🔇';
-    musicControl.classList.add('pausado');
-  }
-});
+if (musicControl) {
+  musicControl.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (!musica) return;
+    if (musica.paused) {
+      musica.play();
+      musicControl.textContent = '🔊';
+      musicControl.classList.remove('pausado');
+    } else {
+      musica.pause();
+      musicControl.textContent = '🔇';
+      musicControl.classList.add('pausado');
+    }
+  });
+}
 
 // ═══════════════════════════════════════════════════════════
+// Confeti optimizado
 // ═══════════════════════════════════════════════════════════
-// Confeti optimizado para móvil
-// ═══════════════════════════════════════════════════════════
-
-// Detectar si es dispositivo móvil
 const esMovil = /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent) || window.innerWidth < 768;
 
-// Inyectar keyframes una sola vez
 const styleConfeti = document.createElement('style');
 styleConfeti.textContent = `@keyframes caer { to { transform: translateY(110vh) rotate(720deg); } }`;
 document.head.appendChild(styleConfeti);
 
 function lanzarConfeti() {
   const colores = ['#8bc34a', '#4a7c2e', '#d4af37', '#a0714a', '#f5e6d3'];
-  const cantidad = esMovil ? 25 : 70; // Menos partículas en móvil
-  const fragment = document.createDocumentFragment(); // Mejor rendimiento
+  const cantidad = esMovil ? 25 : 70;
+  const fragment = document.createDocumentFragment();
 
   for (let i = 0; i < cantidad; i++) {
     const c = document.createElement('div');
@@ -1013,10 +1082,9 @@ function lanzarConfeti() {
   document.body.appendChild(fragment);
 }
 
-// Confeti continuo (solo en desktop)
 if (!esMovil) {
   setInterval(() => {
-    if (!document.hidden && contenido.classList.contains('visible')) {
+    if (!document.hidden && contenido && contenido.classList.contains('visible')) {
       const colores = ['#8bc34a', '#4a7c2e', '#d4af37'];
       const c = document.createElement('div');
       c.style.cssText = `
@@ -1039,28 +1107,81 @@ if (!esMovil) {
     }
   }, 1200);
 }
-setInterval(() => {
-  if (!document.hidden && contenido.classList.contains('visible')) {
-    const colores = ['#8bc34a', '#4a7c2e', '#d4af37'];
-    const c = document.createElement('div');
-    c.style.cssText = `
-      position: fixed;
-      top: -20px;
-      left: ${Math.random() * 100}vw;
-      width: 10px;
-      height: 10px;
-      background: ${colores[Math.floor(Math.random() * colores.length)]};
-      border-radius: 50%;
-      opacity: 0.6;
-      z-index: 998;
-      pointer-events: none;
-      animation: caer linear forwards;
-      animation-duration: ${Math.random() * 3 + 4}s;
-    `;
-    document.body.appendChild(c);
-    setTimeout(() => c.remove(), 8000);
-  }
-}, 1200);
+// ═══════════════════════════════════════════════════════════
+// Botones para copiar datos de donación
+// ═══════════════════════════════════════════════════════════
+document.querySelectorAll('.btn-copiar').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    const texto = btn.dataset.copiar;
+    const icono = btn.querySelector('.icono-copiar');
+    const textoEl = btn.querySelector('.texto-copiar');
+    const textoOriginal = textoEl.textContent;
+    const iconoOriginal = icono.textContent;
+
+    let exito = false;
+
+    // Método 1: Clipboard API (funciona en HTTPS)
+    if (navigator.clipboard && window.isSecureContext) {
+      try {
+        await navigator.clipboard.writeText(texto);
+        exito = true;
+      } catch (err) {
+        console.warn('Clipboard API falló, usando fallback');
+      }
+    }
+
+    // Método 2: Fallback con execCommand (funciona en file://)
+    if (!exito) {
+      const textarea = document.createElement('textarea');
+      textarea.value = texto;
+      textarea.style.position = 'fixed';
+      textarea.style.top = '0';
+      textarea.style.left = '0';
+      textarea.style.width = '1px';
+      textarea.style.height = '1px';
+      textarea.style.opacity = '0';
+      textarea.setAttribute('readonly', '');
+      document.body.appendChild(textarea);
+
+      if (navigator.userAgent.match(/ipad|iphone/i)) {
+        const range = document.createRange();
+        range.selectNodeContents(textarea);
+        const selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        textarea.setSelectionRange(0, 999999);
+      } else {
+        textarea.select();
+      }
+
+      try {
+        exito = document.execCommand('copy');
+      } catch (err) {
+        console.error('Fallback también falló:', err);
+      }
+
+      document.body.removeChild(textarea);
+    }
+
+    // Feedback visual
+    if (exito) {
+      btn.classList.add('copiado');
+      icono.textContent = '✅';
+      textoEl.textContent = '¡Copiado!';
+    } else {
+      icono.textContent = '❌';
+      textoEl.textContent = 'Copia manualmente';
+    }
+
+    setTimeout(() => {
+      btn.classList.remove('copiado');
+      icono.textContent = iconoOriginal;
+      textoEl.textContent = textoOriginal;
+    }, 2000);
+  });
+});
+
+}); // fin DOMContentLoaded
 </script>
 </body>
 </html>
