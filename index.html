@@ -238,7 +238,7 @@
   .contenido {
     opacity: 0;
     transition: opacity 1.2s;
-    padding: 40px 20px 100px;
+    padding: 40px 20px 40px;
     position: relative;
     z-index: 2;
   }
@@ -684,6 +684,60 @@
   .music-control:hover { transform: scale(1.1); }
   .music-control.pausado { opacity: 0.6; }
 
+  /* Créditos del diseñador */
+  .creditos {
+    text-align: center;
+    margin: 30px auto 0;
+    padding: 20px 20px 10px;
+    max-width: 500px;
+    border-top: 2px solid rgba(107, 68, 35, 0.3);
+    font-family: 'MedievalSharp', cursive;
+  }
+  .creditos p {
+    color: var(--marron);
+    font-size: 0.85rem;
+    font-style: italic;
+    margin-bottom: 8px;
+    opacity: 0.8;
+  }
+  .creditos .credito-link {
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin: 5px 0;
+    transition: transform 0.3s;
+  }
+  .creditos .credito-link:hover {
+    transform: scale(1.05);
+  }
+  .icono-whatsapp {
+    width: 22px;
+    height: 22px;
+    fill: #25D366;
+    transition: fill 0.3s;
+  }
+  .creditos .credito-link:hover .icono-whatsapp {
+    fill: var(--dorado);
+  }
+  .credito-nombre {
+    font-family: 'Cinzel Decorative', cursive;
+    font-size: 1.1rem;
+    color: var(--verde-pantano);
+    text-shadow: 1px 1px 0 var(--dorado);
+    transition: color 0.3s, text-shadow 0.3s;
+  }
+  .creditos .credito-link:hover .credito-nombre {
+    color: var(--dorado);
+    text-shadow: 1px 1px 0 var(--verde-oscuro);
+  }
+  .credito-cta {
+    font-size: 0.75rem !important;
+    margin-top: 12px !important;
+    opacity: 0.6 !important;
+  }
+
   @media (max-width: 500px) {
     .tarjeta { margin: 30px 15px; padding: 25px 18px; }
     .foto-principal img { width: 260px; height: 260px; }
@@ -860,6 +914,18 @@
     <div class="mensaje" id="mensajeFinal"></div>
     <a class="btn-whatsapp" id="btnWhatsapp" target="_blank">Confirmar Asistencia 💬</a>
   </div>
+
+  <!-- Créditos del diseñador -->
+<footer class="creditos">
+  <h5>Diseño y desarrollo web por</h5>
+  <a href="https://wa.me/2206478867?text=Hola,%20vi%20la%20invitaci%C3%B3n%20del%20baby%20shower%20y%20me%20interes%C3%B3%20el%20dise%C3%B1o" target="_blank" rel="noopener" class="credito-link">
+    <span class="credito-nombre">Luis Ivan Ortiz Duran</span>
+    <svg class="icono-whatsapp" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207 -.242-.579 -.487 -.5 -.669 -.51 -.173 -.008 -.371 -.01 -.57 -.01 -.198 0 -.52 .074 -.792 .37２ -.２７２ .２９７ -１ .０１６ -１ .２４７９ ０ １ .４６２ １ .０６５ ２ .８７５ １ .２１３ ３ .０７４ .１４９ .１９８ ２ .０９６ ３ .２ ５ .０７７ ４ .４８７ .７０９ .３０６ １ .２６２ .４８９ １ .６９４ .６２５ .７１２ .２２７ １ .３６ .１９５ １ .８７１ .１１８ .５７１ -.０８５ １ .７５８ -.７１９ ２ .００６ -₁ .４₁₃ .₂₄₈ -․₆₉₄ .₂₄₈ -₁ .₂₈₉ .₁₇₃ -₁ .₄₁₃ -․₀₇₄ -․₁₂₄ -․₂₇₂ -․₁₉₈ -․伍柒 -․叁肆柒m -伍․肆₂₁ 柒․肆₀³h -․₀₀⁴a⁹ ․⁸⁷ ⁹ ․⁸⁷ ₀ ⁰¹ -⁵ ․₀³¹ -¹ ․³⁷⁸l -․³⁶¹ -․²¹⁴ -³ ․⁷⁴¹ ." xmlns="http://www.w3.org/twenty-twenty-one/svg">
+      </path>
+    </svg>
+  </a>
+</footer>
 </div>
 
 <!-- Control de música -->
