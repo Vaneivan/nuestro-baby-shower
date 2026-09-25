@@ -734,15 +734,14 @@
 
   <!-- 
     VERSIÓN 1: CON MESA DE REGALOS
-    Para la VERSIÓN 2 (sin mesa de regalos), deja esto comentado.
   -->
-  <!--
+  
   <div class="tarjeta">
     <div class="tarjeta-titulo">🎁 Mesa de Regalos 🎁</div>
     <div class="tarjeta-sub" id="regalosSub"></div>
     <div class="regalos-grid" id="regalosGrid"></div>
   </div>
-  -->
+ 
 
   <!-- Final -->
   <div class="final">
@@ -778,27 +777,27 @@ const CONFIG = {
   ],
 
 //   // 🎁 Mesa de regalos
-//   regalos: [
-//     {
-//       icono: "🛒",
-//       nombre: "Amazon",
-//       descripcion: "Mesa de regalos en Amazon",
-//       url: "https://www.amazon.com.mx"
-//     },
-//     {
-//       icono: "🏬",
-//       nombre: "Liverpool",
-//       descripcion: "Mesa de regalos en Liverpool",
-//       url: "https://www.liverpool.com.mx"
-//     },
-//     {
-//       icono: "💵",
-//       nombre: "Lluvia de Sobres",
-//       descripcion: "Tu presencia es el mejor regalo, pero si deseas contribuir, un sobre será bienvenido",
-//       url: "#"
-//     }
-//   ],
-//   regalosSub: "Tu presencia es nuestro mejor regalo, pero si deseas obsequiarnos algo, aquí tienes opciones:",
+  regalos: [
+    {
+      icono: "🛒",
+      nombre: "Amazon",
+      descripcion: "Mesa de regalos en Amazon",
+      url: "https://www.amazon.com.mx"
+    },
+    {
+      icono: "🏬",
+      nombre: "Liverpool",
+      descripcion: "Mesa de regalos en Liverpool",
+      url: "https://www.liverpool.com.mx"
+    },
+    {
+      icono: "💵",
+      nombre: "Lluvia de Sobres",
+      descripcion: "Tu presencia es el mejor regalo, pero si deseas contribuir, un sobre será bienvenido",
+      url: "#"
+    }
+  ],
+  regalosSub: "Tu presencia es nuestro mejor regalo, pero si deseas obsequiarnos algo, aquí tienes opciones:",
 
   // 📍 Mapa (pega el src del iframe de Google Maps)
   mapaIframe: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3750.123726544909!2d-98.92315242065429!3d19.961298300000003!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85d199003cd6d61b%3A0x9b4e9477a2ba74e7!2sSal%C3%B3n%20de%20usos%20m%C3%BAltiples%20%22Lienzo%20Charro%22!5e0!3m2!1ses!2smx!4v1790047651294!5m2!1ses!2smx",
@@ -835,7 +834,7 @@ document.getElementById('lugar').textContent = CONFIG.lugar;
 document.getElementById('lugar2').textContent = CONFIG.lugar2;
 document.getElementById('direccion').textContent = CONFIG.direccion;
 document.getElementById('vestimentaSub').textContent = CONFIG.vestimentaSub;
-// document.getElementById('regalosSub').textContent = CONFIG.regalosSub;
+document.getElementById('regalosSub').textContent = CONFIG.regalosSub;
 document.getElementById('mensajeFinal').textContent = CONFIG.mensajeFinal;
 document.getElementById('fotoPrincipal').src = CONFIG.imagenPrincipal;
 document.getElementById('mapaIframe').src = CONFIG.mapaIframe;
@@ -868,20 +867,20 @@ CONFIG.vestimenta.forEach(url => {
 });
 
 // // Mesa de regalos
-// const regalosEl = document.getElementById('regalosGrid');
-// CONFIG.regalos.forEach(r => {
-//   const a = document.createElement('a');
-//   a.className = 'regalo-card';
-//   a.href = r.url;
-//   a.target = '_blank';
-//   a.rel = 'noopener';
-//   a.innerHTML = `
-//     <div class="regalo-icono">${r.icono}</div>
-//     <div class="regalo-nombre">${r.nombre}</div>
-//     <div class="regalo-desc">${r.descripcion}</div>
-//   `;
-//   regalosEl.appendChild(a);
-// });
+const regalosEl = document.getElementById('regalosGrid');
+CONFIG.regalos.forEach(r => {
+  const a = document.createElement('a');
+  a.className = 'regalo-card';
+  a.href = r.url;
+  a.target = '_blank';
+  a.rel = 'noopener';
+  a.innerHTML = `
+    <div class="regalo-icono">${r.icono}</div>
+    <div class="regalo-nombre">${r.nombre}</div>
+    <div class="regalo-desc">${r.descripcion}</div>
+  `;
+  regalosEl.appendChild(a);
+});
 
 // Botón WhatsApp
 const mensaje = encodeURIComponent(`¡Hola! Confirmo mi asistencia con mi nombre al Baby Shower ${CONFIG.nombreBebe} 😉💛`);
