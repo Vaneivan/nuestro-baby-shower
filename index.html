@@ -660,7 +660,8 @@
     transform: translateY(-3px) scale(1.05);
     box-shadow: 0 15px 35px rgba(74, 124, 46, 0.7);
   }
-  /* Control de música - Fijo en esquina, sin movimiento */
+
+    /* Control de música */
   .music-control {
     position: fixed;
     bottom: 20px;
@@ -678,23 +679,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transform: none !important;
-    transition: none !important;
-    -webkit-tap-highlight-color: transparent;
-    -webkit-touch-callout: none;
-    user-select: none;
-    outline: none;
+    transition: transform 0.3s;
   }
-  .music-control:hover,
-  .music-control:active,
-  .music-control:focus,
-  .music-control:focus-visible {
-    transform: none !important;
-    transition: none !important;
-    box-shadow: 0 8px 20px rgba(45, 80, 22, 0.5) !important;
-  }
+  .music-control:hover { transform: scale(1.1); }
   .music-control.pausado { opacity: 0.6; }
-  
+
+  /* Créditos del diseñador */
+  .creditos {
+    text-align: center;
+    margin: 30px auto 0;
+    padding: 20px 20px 10px;
+    max-width: 500px;
+    border-top: 2px solid rgba(107, 68, 35, 0.3);
+    font-family: 'MedievalSharp', cursive;
+  }
   .creditos p {
     color: var(--marron);
     font-size: 0.85rem;
