@@ -820,7 +820,7 @@
       <div class="simbolo">🚫</div>
       <div class="texto">
         <strong>PROHIBIDO VESTIR DE VERDE</strong>
-        ¡No queremos confundirte con Shrek! 🧅
+        ¡No queremos confundirte con los nuevos papás! 🤰🫃
       </div>
     </div>
   </div>
@@ -828,12 +828,17 @@
     <!-- 
     VERSIÓN 1: CON MESA DE REGALOS
   -->
-  <!-- Mesa de Regalos - Giftful -->
-  <div class="tarjeta">
+<!-- Mesa de Regalos - Giftful -->
+<div class="tarjeta">
   <div class="tarjeta-titulo">🧅 No Traigas Cebollas, Trae Regalos 🎁</div>
   <div class="tarjeta-sub">
-    Si deseas obsequiarnos algo para nuestro pequeño ogro,<br>
-    aquí encontrarás la lista de regalos que necesita.
+    Si deseas obsequiarnos algo (no es obligatorio) para nuestro pequeño ogro,<br>
+    aquí encontrarás la lista de regalos que necesita.<br><br>
+    <strong>¡Recuerda Reservar!</strong> Si el regalo exacto no está disponible,<br>
+    cualquier versión parecida o que sirva para lo mismo<br>
+    será recibida con mucho cariño. 🧅<br><br>
+    Y si prefieres regalar algo que no está en la lista,<br>
+    ¡también será recibido con muchísimo gusto!
   </div>
   <div class="regalos-grid">
     <a href="https://giftful.com/wishlists/HF7JACPyYHttY2d1tMrq" target="_blank" rel="noopener" class="regalo-card">
@@ -1025,11 +1030,16 @@ if (vestEl) {
   });
 }
 
-// Botón WhatsApp
-const mensaje = encodeURIComponent(`¡Hola! Confirmo mi asistencia con mi nombre al Baby Shower ${CONFIG.nombreBebe} 😉💛`);
+const mensaje = encodeURIComponent(
+  "¡Hola! Confirmo mi asistencia al Baby Shower.🤰🏻🎉\n\n" +
+  "Invitado: (escribe tu nombre aquí)👋🏻\n\n" +
+  "Acompañantes:👥\n" +
+  "1.- \n" +
+  "2.- \n" +
+  "¡Nos vemos!"
+);
 const btnWhatsapp = document.getElementById('btnWhatsapp');
-if (btnWhatsapp) btnWhatsapp.href = `https://wa.me/${CONFIG.whatsapp}?text=${mensaje}`;
-
+if (btnWhatsapp) btnWhatsapp.href = `https://api.whatsapp.com/send?phone=${CONFIG.whatsapp}&text=${mensaje}`;
 // ═══════════════════════════════════════════════════════════
 // Contador regresivo
 // ═══════════════════════════════════════════════════════════
