@@ -920,6 +920,12 @@
     <a class="btn-whatsapp" id="btnWhatsapp" target="_blank">Confirmar Asistencia 💬</a>
   </div>
 
+   <!-- Control de música (ahora estático) -->
+  <div class="music-control-contenedor">
+    <button class="music-control" id="musicControl" title="Música on/off">🔊</button>
+    <span class="music-control-texto">Música de fondo</span>
+  </div>
+
   <!-- Créditos del diseñador -->
 <footer class="creditos">
   <h5>Diseño y desarrollo web por</h5>
@@ -934,8 +940,6 @@
 </footer>
 </div>
 
-<!-- Control de música -->
-<button class="music-control" id="musicControl" title="Música on/off">🔊</button>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -1034,8 +1038,8 @@ const mensaje = encodeURIComponent(
   "¡Hola! Confirmo mi asistencia al Baby Shower.🤰🏻🎉\n\n" +
   "Invitado: (escribe tu nombre aquí)👋🏻\n\n" +
   "Acompañantes:👥\n" +
-  "1.- \n" +
-  "2.- \n" +
+  "1.- nombre  \n" +
+  "2.- nombre  \n" +
   "¡Nos vemos!"
 );
 const btnWhatsapp = document.getElementById('btnWhatsapp');
