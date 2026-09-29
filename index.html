@@ -661,7 +661,7 @@
     box-shadow: 0 15px 35px rgba(74, 124, 46, 0.7);
   }
 
-    /* Control de música */
+     /* Control de música - Fijo en esquina, sin animación */
   .music-control {
     position: fixed;
     bottom: 20px;
@@ -679,11 +679,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: transform 0.3s;
+    transform: none !important;
+    transition: none !important;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    user-select: none;
+    outline: none;
   }
-  .music-control:hover { transform: scale(1.1); }
+  .music-control:hover,
+  .music-control:active,
+  .music-control:focus,
+  .music-control:focus-visible {
+    transform: none !important;
+    transition: none !important;
+    box-shadow: 0 8px 20px rgba(45, 80, 22, 0.5) !important;
+  }
   .music-control.pausado { opacity: 0.6; }
-
   /* Créditos del diseñador */
   .creditos {
     text-align: center;
@@ -825,39 +836,42 @@
     </div>
   </div>
 
-    <!-- 
-    VERSIÓN 1: CON MESA DE REGALOS
+  <!-- 
+    VERSIÓN 1: CON MESA DE REGALOS (COMENTADA POR PETICIÓN)
   -->
-<!-- Mesa de Regalos - Giftful -->
-<div class="tarjeta">
-  <div class="tarjeta-titulo">🧅 No Traigas Cebollas, Trae Regalos 🎁</div>
-  <div class="tarjeta-sub">
-    Si deseas obsequiarnos algo (no es obligatorio) para nuestro pequeño ogro,<br>
-    aquí encontrarás la lista de regalos que necesita.<br><br>
-    <strong>¡Recuerda Reservar!</strong> Si el regalo exacto no está disponible,<br>
-    cualquier versión parecida o que sirva para lo mismo<br>
-    será recibida con mucho cariño. 🧅<br><br>
-    Y si prefieres regalar algo que no está en la lista,<br>
-    ¡también será recibido con muchísimo gusto!
+  <!--
+  <div class="tarjeta">
+    <div class="tarjeta-titulo">🧅 No Traigas Cebollas, Trae Regalos 🎁</div>
+    <div class="tarjeta-sub">
+      Si deseas obsequiarnos algo (no es obligatorio) para nuestro pequeño ogro,<br>
+      aquí encontrarás la lista de regalos que necesita.<br><br>
+      <strong>¡Recuerda Reservar!</strong> Si el regalo exacto no está disponible,<br>
+      cualquier versión parecida o que sirva para lo mismo<br>
+      será recibida con mucho cariño. 🧅<br><br>
+      Y si prefieres regalar algo que no está en la lista,<br>
+      ¡también será recibido con muchísimo gusto!
+    </div>
+    <div class="regalos-grid">
+      <a href="https://giftful.com/wishlists/HF7JACPyYHttY2d1tMrq" target="_blank" rel="noopener" class="regalo-card">
+        <div class="regalo-icono">📋</div>
+        <div class="regalo-nombre">Ver Lista de Regalos</div>
+        <div class="regalo-desc">Regalos que necesita nuestro pequeño ogro</div>
+      </a>
+    </div>
   </div>
-  <div class="regalos-grid">
-    <a href="https://giftful.com/wishlists/HF7JACPyYHttY2d1tMrq" target="_blank" rel="noopener" class="regalo-card">
-      <div class="regalo-icono">📋</div>
-      <div class="regalo-nombre">Ver Lista de Regalos</div>
-      <div class="regalo-desc">Regalos que necesita nuestro pequeño ogro</div>
-    </a>
-  </div>
-</div>
+  -->
+
 <!-- Donaciones en efectivo -->
 <div class="tarjeta dorada">
   <div class="tarjeta-titulo">💰 El Cofre del Reino 💰</div>
   <div class="tarjeta-sub">
-    Si prefieres hacernos un obsequio en efectivo para nuestro pequeño ogro,<br>
-    aquí te dejamos las opciones. ¡Gracias por tu cariño! 🧅
+    Si prefieres hacernos un obsequio en efectivo con una pequeña dedicatoria para nuestro pequeño ogro,<br>
+    tu sobre será recibido con muchísimo cariño. ¡Gracias! 🧅
   </div>
 
   <div class="regalos-grid">
-    <!-- Transferencia -->
+    <!-- Transferencia (COMENTADA POR PETICIÓN) -->
+    <!--
     <div class="regalo-card" style="cursor: default;">
       <div class="regalo-icono">📱</div>
       <div class="regalo-nombre">Transferencia</div>
@@ -872,6 +886,7 @@
         <span class="texto-copiar">Copiar CLABE</span>
       </button>    
     </div>
+    -->
 
     <!-- Sobre -->
     <div class="regalo-card" style="cursor: default;">
@@ -912,7 +927,6 @@
     <a class="btn-mapa" id="btnMapa" target="_blank">Abrir en Google Maps 🗺️</a>
   </div>
 
- 
 
   <!-- Final -->
   <div class="final">
@@ -934,8 +948,8 @@
 </footer>
 </div>
 
-<!-- Control de música -->
-<button class="music-control" id="musicControl" title="Música on/off">🔊</button>
+  <!-- Control de música - Ahora estático, dentro del contenido -->
+  <button class="music-control" id="musicControl" title="Música on/off">🔊</button>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
