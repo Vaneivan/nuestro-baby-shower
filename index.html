@@ -661,7 +661,7 @@
     box-shadow: 0 15px 35px rgba(74, 124, 46, 0.7);
   }
 
-     /* Control de música - Fijo en esquina, sin animación */
+  /* Control de música - Fijo en esquina, sin animación */
   .music-control {
     position: fixed;
     bottom: 20px;
@@ -679,12 +679,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    transform: none !important;
+    /* Sin transiciones ni transforms */
     transition: none !important;
+    animation: none !important;
     -webkit-tap-highlight-color: transparent;
     -webkit-touch-callout: none;
     user-select: none;
     outline: none;
+    touch-action: manipulation;
   }
   .music-control:hover,
   .music-control:active,
@@ -692,6 +694,7 @@
   .music-control:focus-visible {
     transform: none !important;
     transition: none !important;
+    animation: none !important;
     box-shadow: 0 8px 20px rgba(45, 80, 22, 0.5) !important;
   }
   .music-control.pausado { opacity: 0.6; }
@@ -934,6 +937,10 @@
     <a class="btn-whatsapp" id="btnWhatsapp" target="_blank">Confirmar Asistencia 💬</a>
   </div>
 
+    <!-- Control de música -->
+  <button class="music-control" id="musicControl" title="Música on/off">🔊</button>
+
+
   <!-- Créditos del diseñador -->
 <footer class="creditos">
   <h5>Diseño y desarrollo web por</h5>
@@ -948,8 +955,6 @@
 </footer>
 </div>
 
-  <!-- Control de música - Ahora estático, dentro del contenido -->
-  <button class="music-control" id="musicControl" title="Música on/off">🔊</button>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
